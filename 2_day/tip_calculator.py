@@ -9,6 +9,10 @@ total_bill = total_bill * percentage_tip / 100 + total_bill
 
 # Each person should pay: $ float with 2 decimal places
 not_rounded_bill = total_bill / amount_people
+
+# format using string format
 each_person_bill_format = "{:.2f}".format(not_rounded_bill)
+
+# format using round function
 each_person_bill = round(not_rounded_bill, 2)
 print(f"Each person should pay: ${each_person_bill_format}")
