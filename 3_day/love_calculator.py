@@ -2,26 +2,26 @@ print("Welcome to the Love Calculator!")
 name1 = input("What is your name? \n")
 name2 = input("What is their name? \n")
 
-mergeNames = f"{name1}{name2}".lower()
+merged_names = f"{name1}{name2}".lower()
 
-tCounter = 0
-lCounter = 0
+t_counter = 0
+l_counter = 0
 
 for c in "true":
-    tCounter += mergeNames.count(c)
+    t_counter += merged_names.count(c)
 
 for c in "love":
-    lCounter += mergeNames.count(c)
+    l_counter += merged_names.count(c)
 
-score = int(f"{tCounter}{lCounter}")
+score = int(f"{t_counter}{l_counter}")
 
-resultMessage = ""
+result_message = ""
 
 if score <= 10 or score >= 90:
-    resultMessage = f"Your score is {score}, you go together like coke and mentos."
+    result_message = f"Your score is {score}, you go together like coke and mentos."
 elif 40 <= score <= 50:
-    resultMessage = f"Your score is {score}, you are alright together."
+    result_message = f"Your score is {score}, you are alright together."
 else:
-    resultMessage = f"Your score is {score}."
+    result_message = f"Your score is {score}."
 
-print(resultMessage)
+print(result_message)
