@@ -10,8 +10,7 @@ states_of_america = ["Delaware", "Pennsylvania", "New Jersey", "Georgia", "Conne
 # set value to list: states_of_america[-1] = "new value"
 # to append value: states_of_america.append("Someland")
 # to extend existing list with another list: states_of_america.extend(["Someland", "Newland"])
-states_of_america.append("Someland")
-states_of_america.extend(["Newland", "Blalend"])
+# states_of_america.append("Someland")
+# states_of_america.extend(["Newland", "Blalend"])
 
 # about list and datastructures in python https://docs.python.org/3/tutorial/datastructures.html
-print(states_of_america)
