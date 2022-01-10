@@ -1,8 +1,8 @@
 import random
 
-seed = int(input("Insert random seed number"))
+# seed = int(input("Insert random seed number"))
 
-random.seed(seed)
+# random.seed(seed)
 
 rock = '''
     _______
