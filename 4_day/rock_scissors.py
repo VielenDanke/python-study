@@ -41,9 +41,12 @@ player_win_message = "Player win"
 no_winner_message = "No winner"
 computer_win_message = "Computer win"
 
-rules = [[paper, rock, player_win_message], [paper, paper, no_winner_message], [paper, scissors, computer_win_message],
-         [rock, paper, computer_win_message], [rock, rock, no_winner_message], [rock, scissors, player_win_message],
-         [scissors, rock, computer_win_message], [scissors, paper, player_win_message], [scissors, scissors, no_winner_message]]
+rules = [
+    [paper, rock, player_win_message], [paper, paper, no_winner_message], [paper, scissors, computer_win_message],
+    [rock, paper, computer_win_message], [rock, rock, no_winner_message], [rock, scissors, player_win_message],
+    [scissors, rock, computer_win_message], [scissors, paper, player_win_message],
+    [scissors, scissors, no_winner_message]
+]
 
 player = game_list[player_number]
 computer = game_list[computer_number]
