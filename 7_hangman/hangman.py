@@ -25,6 +25,7 @@ def game():
         else:
             for i in correct_idx:
                 empty_guess_list[i] = guess_word[i]
+            print(empty_guess_list)
 
 
 def validate_letter_length(letter):
@@ -32,11 +33,11 @@ def validate_letter_length(letter):
 
 
 def check_letter(letter, word):
-    correct_idxs = []
+    correct_idx = []
     for idx in range(0, len(word)):
         if word[idx] == letter:
-            correct_idxs.append(idx)
-    return correct_idxs
+            correct_idx.append(idx)
+    return correct_idx
 
 
 game()
