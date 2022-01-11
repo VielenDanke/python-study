@@ -8,9 +8,9 @@ nr_letters = int(input("How many letters would you like in your password?\n"))
 nr_symbols = int(input(f"How many symbols would you like?\n"))
 nr_numbers = int(input(f"How many numbers would you like?\n"))
 
-password = ""
-
 # 2 version
+
+password_list = []
 
 letters_counter = 0
 symbols_counter = 0
@@ -22,18 +22,25 @@ while True:
     if numbers_counter == nr_numbers and letters_counter == nr_letters and symbols_counter == nr_symbols:
         break
     if num % 2 != 0 and num % 3 != 0 and symbols_counter < nr_symbols:
-        password += symbols[random.randint(0, len(symbols) - 1)]
+        password_list.append(random.choice(symbols))
         symbols_counter += 1
     elif num % 2 == 0 and letters_counter < nr_letters:
-        password += letters[random.randint(0, len(letters) - 1)]
+        password_list.append(random.choice(letters))
         letters_counter += 1
     elif num % 3 == 0 and numbers_counter < nr_numbers:
-        password += numbers[random.randint(0, len(numbers) - 1)]
+        password_list.append(random.choice(numbers))
         numbers_counter += 1
     else:
         continue
 
-print(password)
+random.shuffle(password_list)
+
+final_password = ""
+
+for letter in password_list:
+    final_password += letter
+
+print(f"Your password is {final_password}")
 
 # 1 version
 
