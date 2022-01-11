@@ -1,7 +1,6 @@
 # 4 spaces - indentation
-def hello():
-    print("Hello")
-    print("Bye")
+def hello(name, surname="Default"):
+    return f"Hello {name} {surname}"
 
 
-hello()
+print(hello("Vlad"))
