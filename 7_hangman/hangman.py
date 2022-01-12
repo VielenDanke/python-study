@@ -1,43 +1,114 @@
 import random
 
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+
 
 def game():
+    life_counter = len(stages) - 1
+
     word_list = ["aardvark", "baboon", "camel"]
 
     guess_word = random.choice(word_list)
 
     empty_guess_list = []
 
-    for i in range(0, len(guess_word)):
+    for _ in range(0, len(guess_word)):
         empty_guess_list.append("_")
 
-    while True:
+    lose_condition = 0
+
+    while life_counter > lose_condition:
+        if "_" not in empty_guess_list:
+            break
+
         guess_letter = input("Guess the letter? ")
 
         if not validate_letter_length(guess_letter):
             print("Insert only one letter")
             continue
+        if guess_letter in empty_guess_list:
+            print("You already guessed this letter. Choose another one")
+            continue
 
-        correct_idx = check_letter(guess_letter, guess_word)
+        is_found = set_letter_if_exists(guess_letter, guess_word, empty_guess_list)
 
-        if len(correct_idx) == 0:
-            print("Wrong")
-        else:
-            for i in correct_idx:
-                empty_guess_list[i] = guess_word[i]
+        if is_found:
             print(empty_guess_list)
+            continue
+        life_counter -= 1
+        print(stages[life_counter])
+    if life_counter < lose_condition:
+        print("You win!")
+        return
+    print("You lose!")
 
 
 def validate_letter_length(letter):
     return len(letter) == 1
 
 
-def check_letter(letter, word):
-    correct_idx = []
+def set_letter_if_exists(letter, word, empty_guess_list):
+    is_found = False
     for idx in range(0, len(word)):
         if word[idx] == letter:
-            correct_idx.append(idx)
-    return correct_idx
+            empty_guess_list[idx] = word[idx]
+            is_found = True
+    return is_found
 
 
 game()
