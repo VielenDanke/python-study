@@ -39,7 +39,7 @@ def game():
 
         if is_found:
             print("You guessed right!")
-            # join list into a string
+            # join list into a string with space between each array element
             print(f"{' '.join(empty_guess_list)}")
             print(stages[life_counter])
             continue
