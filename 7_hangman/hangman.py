@@ -76,7 +76,7 @@ def game():
         if "_" not in empty_guess_list:
             break
 
-        guess_letter = input("Guess the letter? ")
+        guess_letter = input("Guess the letter? ").lower()
 
         if not validate_letter_length(guess_letter):
             print("Insert only one letter")
