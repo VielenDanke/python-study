@@ -1,98 +1,53 @@
 import random
-
-stages = ['''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========
-''']
+import hangman_art
+import hangman_words
 
 
 def game():
-    life_counter = len(stages) - 1
+    life_counter = len(hangman_art.stages) - 1
 
-    word_list = ["aardvark", "baboon", "camel"]
-
-    guess_word = random.choice(word_list)
+    guess_word = random.choice(hangman_words.word_list)
 
     empty_guess_list = []
+    guessed_letters = []
 
     for _ in range(0, len(guess_word)):
         empty_guess_list.append("_")
 
     lose_condition = 0
 
+    print(hangman_art.logo + "\n")
+
+    print(f"Pssss. The solution is {guess_word}")
+
     while life_counter > lose_condition:
         if "_" not in empty_guess_list:
             break
 
-        guess_letter = input("Guess the letter? ").lower()
+        letter = input("Guess the letter? ").lower()
 
-        if not validate_letter_length(guess_letter):
+        if not validate_letter_length(letter):
             print("Insert only one letter")
             continue
-        if guess_letter in empty_guess_list:
+        if letter in guessed_letters:
             print("You already guessed this letter. Choose another one")
             continue
 
-        is_found = set_letter_if_exists(guess_letter, guess_word, empty_guess_list)
+        guessed_letters.append(letter)
+
+        is_found = set_letter_if_exists(letter, guess_word, empty_guess_list)
 
         if is_found:
-            print(empty_guess_list)
+            print("You guessed right!")
+            # join list into a string
+            print(f"{' '.join(empty_guess_list)}")
+            print(hangman_art.stages[life_counter])
             continue
         life_counter -= 1
-        print(stages[life_counter])
-    if life_counter < lose_condition:
+        print(f"You guessed a letter {letter} that is not in the word. You lose a life.")
+        print(f"{' '.join(empty_guess_list)}")
+        print(hangman_art.stages[life_counter])
+    if life_counter > lose_condition:
         print("You win!")
         return
     print("You lose!")
