@@ -1,12 +1,12 @@
 import random
-import hangman_art
-import hangman_words
+from hangman_art import stages, logo
+from hangman_words import word_list
 
 
 def game():
-    life_counter = len(hangman_art.stages) - 1
+    life_counter = len(stages) - 1
 
-    guess_word = random.choice(hangman_words.word_list)
+    guess_word = random.choice(word_list)
 
     empty_guess_list = []
     guessed_letters = []
@@ -16,7 +16,7 @@ def game():
 
     lose_condition = 0
 
-    print(hangman_art.logo + "\n")
+    print(logo + "\n")
 
     print(f"Pssss. The solution is {guess_word}")
 
@@ -41,12 +41,12 @@ def game():
             print("You guessed right!")
             # join list into a string
             print(f"{' '.join(empty_guess_list)}")
-            print(hangman_art.stages[life_counter])
+            print(stages[life_counter])
             continue
         life_counter -= 1
         print(f"You guessed a letter {letter} that is not in the word. You lose a life.")
         print(f"{' '.join(empty_guess_list)}")
-        print(hangman_art.stages[life_counter])
+        print(stages[life_counter])
     if life_counter > lose_condition:
         print("You win!")
         return
