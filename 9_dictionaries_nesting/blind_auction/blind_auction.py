@@ -3,6 +3,7 @@ from art import logo
 print(logo)
 print("Welcome to blind auction")
 
+# just for practice using dictionary. For avoiding people with the same name - better using array
 bids = {}
 
 temp_name = ""
