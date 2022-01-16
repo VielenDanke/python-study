@@ -12,11 +12,14 @@ def is_leap(year):
 
 
 def days_in_month(year, month):
+    if month > 12 or month < 1:
+        return "Invalid month"
+    if year < 1:
+        return "Invalid year"
     month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     days_amount = month_days[month - 1]
-    if is_leap(year):
-        if month == 2:
-            return days_amount + 1
+    if is_leap(year) and month == 2:
+        days_amount += 1
     return days_amount
 
 
