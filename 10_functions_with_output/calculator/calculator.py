@@ -50,8 +50,8 @@ def calculator():
             is_continue = False
             calculator()
         elif user_answer != "y":
-            print("Unknown answer. Break program")
-            return
+            print("Unknown answer. Exit program")
+            return num1
 
 
-calculator()
+print(f"Final result: {calculator()}")
