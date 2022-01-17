@@ -8,9 +8,20 @@ import random
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 dealer_stop_number = 19
 
+
 ## The cards in the list have equal probability of being drawn.
 ## Cards are not removed from the deck as they are drawn.
 ## The computer is the dealer.
+
+
+def card_deal(player_hand):
+    next_number = random.choice(cards)
+    if next_number == 11:
+        if next_number + player_hand > 21:
+            next_number = 1
+        else:
+            next_number = 11
+    return next_number
 
 
 def game():
@@ -24,21 +35,14 @@ def game():
     dealer_hand += f_dealer_num + s_dealer_num
     player_hand += random.choice(cards) + random.choice(cards)
 
-    print(f"Dealer hand: x+{s_dealer_num}")
+    print(f"Dealer hand: {s_dealer_num}")
     print(f"Player hand: {player_hand}")
 
     while player_hand <= blackjack_lucky_number:
-        # if 11 - > num + 11 > 21 = 1 or num + 11 < 21 = 11
         player_answer = input("Hit? Type 'y' or 'n'").lower()
 
         if player_answer == "y":
-            next_number = random.choice(cards)
-            if next_number == 11:
-                if next_number + player_hand > 21:
-                    next_number = 1
-                else:
-                    next_number = 11
-            player_hand += next_number
+            player_hand += card_deal(player_hand)
         else:
             break
 
@@ -47,8 +51,21 @@ def game():
     if dealer_hand > player_hand or player_hand > 21:
         print(f"Dealer wins! {final_message}")
         return
-    if player_hand > dealer_hand:
+
+    while dealer_hand <= blackjack_lucky_number:
+        if dealer_stop_number - 1 == dealer_hand or dealer_stop_number + 1 == blackjack_lucky_number:
+            break
+        else:
+            dealer_hand += card_deal(player_hand)
+
+    if dealer_hand > 21:
         print(f"Player wins! {final_message}")
+    if dealer_hand < player_hand:
+        print(f"Player wins! {final_message}")
+    elif dealer_hand == player_hand:
+        print(f"Buds! {final_message}")
+    else:
+        print(f"Dealer wins! {final_message}")
 
 
 game()
